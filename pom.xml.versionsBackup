@@ -1,20 +1,38 @@
-<?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>commons</artifactId>
-		<groupId>com.vanstone</groupId>
-		<version>1.2.8</version>
-	</parent>
-	<groupId>org.apache.tomcat</groupId>
-	<artifactId>tomcat7-redis-session-manager</artifactId>
-	<name>tomcat7-redis-session-manager</name>
+
+	<groupId>com.vanstone</groupId>
+	<artifactId>commons</artifactId>
+	<version>1.2.7</version>
+	<packaging>pom</packaging>
+	
+	<name>commons</name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+
+	<modules>
+		<module>vanstone-common</module>
+		<module>vanstone-business-def</module>
+		<module>vanstone-dal-mybatis</module>
+		<module>vanstone-elasticsearch</module>
+		<module>vanstone-fs</module>
+		<module>vanstone-weedfs</module>
+		<module>vanstone-kafka-messagebus</module>
+		<module>vanstone-mail</module>
+		<module>vanstone-redis</module>
+		<module>vanstone-taglib</module>
+		<module>vanstone-framework</module>
+		<module>vanstone-webframework</module>
+		<module>vanstone-crawler4j</module>
+		<!-- <module>vanstone-sms-ensms1069009130</module> -->
+		<module>vanstone-mongo</module>
+		<module>vanstone-quartz</module>
+		<module>vanstone-gm</module>
+		<module>vanstone-emoji</module>
+		<module>vanstone-notification</module>
+		<module>tomcat7-redis-session-manager</module>
+  </modules>
+	
 	<distributionManagement>
 		<repository>
 			<id>sagacityidea-release</id>
@@ -22,6 +40,11 @@
 			<url>http://repo.sagacityidea.com:8081/nexus/content/repositories/sagacityidea-release/</url>
 		</repository>
 	</distributionManagement>
+	
+	<properties>
+		<vanstone.commons.version>1.2.7</vanstone.commons.version>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -30,21 +53,49 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina</artifactId>
-			<version>7.0.55</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.2.5</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.2.5</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.2.5</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-juli</artifactId>
-			<version>7.0.55</version>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.1.0</version>
 		</dependency>
 	</dependencies>
 	<build>

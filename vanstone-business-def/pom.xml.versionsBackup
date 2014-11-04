@@ -5,15 +5,14 @@
 	<parent>
 		<groupId>com.vanstone</groupId>
 		<artifactId>commons</artifactId>
-		<version>1.2.8</version>
+		<version>1.2.7</version>
 	</parent>
 	
-	<artifactId>vanstone-fs</artifactId>
+	<artifactId>vanstone-business-def</artifactId>
 	<packaging>jar</packaging>
 	
-	<name>vanstone-fs</name>
+	<name>vanstone-business-def</name>
 	<url>http://maven.apache.org</url>
-
 	<distributionManagement>
 		<repository>
 			<id>sagacityidea-release</id>
@@ -24,7 +23,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -32,23 +30,20 @@
 			<version>4.6</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- servlet -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
-			<scope>provided</scope>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.0</version>
 		</dependency>
 		<dependency>
-			<groupId>com.vanstone</groupId>
-			<artifactId>vanstone-common</artifactId>
-			<version>${vanstone.commons.version}</version>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
 		</dependency>
 	</dependencies>
 	<build>

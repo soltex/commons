@@ -5,15 +5,14 @@
 	<parent>
 		<groupId>com.vanstone</groupId>
 		<artifactId>commons</artifactId>
-		<version>1.2.8</version>
+		<version>1.2.7</version>
 	</parent>
 	
-	<artifactId>vanstone-fs</artifactId>
+	<artifactId>vanstone-elasticsearch</artifactId>
 	<packaging>jar</packaging>
 	
-	<name>vanstone-fs</name>
+	<name>vanstone-elasticsearch</name>
 	<url>http://maven.apache.org</url>
-
 	<distributionManagement>
 		<repository>
 			<id>sagacityidea-release</id>
@@ -21,6 +20,7 @@
 			<url>http://repo.sagacityidea.com:8081/nexus/content/repositories/sagacityidea-release/</url>
 		</repository>
 	</distributionManagement>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -32,23 +32,22 @@
 			<version>4.6</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- servlet -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.xerial.snappy</groupId> <artifactId>snappy-java</artifactId> 
+			<version>1.0.4.1</version> </dependency> -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.vanstone</groupId>
-			<artifactId>vanstone-common</artifactId>
-			<version>${vanstone.commons.version}</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.2</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -125,3 +124,4 @@
 		</plugins>
 	</build>
 </project>
+

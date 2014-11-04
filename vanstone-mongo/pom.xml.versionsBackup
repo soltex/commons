@@ -6,11 +6,10 @@
 	<parent>
 		<artifactId>commons</artifactId>
 		<groupId>com.vanstone</groupId>
-		<version>1.2.8</version>
+		<version>1.2.7</version>
 	</parent>
-	<artifactId>vanstone-emoji</artifactId>
-	<version>1.0</version>
-	<name>vanstone-emoji</name>
+	<artifactId>vanstone-mongo</artifactId>
+	<name>vanstone-mongo</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,6 +27,16 @@
 			<artifactId>junit</artifactId>
 			<version>4.6</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.5.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vanstone</groupId>
+			<artifactId>vanstone-common</artifactId>
+			<version>${vanstone.commons.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

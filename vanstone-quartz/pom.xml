@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>commons</artifactId>
 		<groupId>com.vanstone</groupId>
-		<version>1.2.7</version>
+		<version>1.2.8</version>
 	</parent>
 	<artifactId>vanstone-quartz</artifactId>
 	<version>1.0</version>

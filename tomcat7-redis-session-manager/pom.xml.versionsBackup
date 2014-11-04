@@ -6,11 +6,11 @@
 	<parent>
 		<artifactId>commons</artifactId>
 		<groupId>com.vanstone</groupId>
-		<version>1.2.8</version>
+		<version>1.2.7</version>
 	</parent>
-	<artifactId>vanstone-emoji</artifactId>
-	<version>1.0</version>
-	<name>vanstone-emoji</name>
+	<groupId>org.apache.tomcat</groupId>
+	<artifactId>tomcat7-redis-session-manager</artifactId>
+	<name>tomcat7-redis-session-manager</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,6 +28,23 @@
 			<artifactId>junit</artifactId>
 			<version>4.6</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.55</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>7.0.55</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 	</dependencies>
 	<build>

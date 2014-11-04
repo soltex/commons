@@ -6,11 +6,11 @@
 	<parent>
 		<artifactId>commons</artifactId>
 		<groupId>com.vanstone</groupId>
-		<version>1.2.8</version>
+		<version>1.2.7</version>
 	</parent>
-	<artifactId>vanstone-emoji</artifactId>
+	<artifactId>vanstone-notification</artifactId>
 	<version>1.0</version>
-	<name>vanstone-emoji</name>
+	<name>vanstone-notification</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
