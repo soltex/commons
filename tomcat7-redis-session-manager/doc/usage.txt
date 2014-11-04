@@ -1,0 +1,17 @@
+Add the following into your Tomcat context.xml (or the context block of the server.xml if applicable.)
+
+<Valve className="com.radiadesign.catalina.session.RedisSessionHandlerValve" />
+<Manager className="com.radiadesign.catalina.session.RedisSessionManager"
+         host="115.28.215.31" <!-- optional: defaults to "localhost" -->
+         port="10000" <!-- optional: defaults to "6379" -->
+         database="0" <!-- optional: defaults to "0" -->
+         maxInactiveInterval="60" <!-- optional: defaults to "60" (in seconds) --> />
+
+The Valve must be declared before the Manager.
+
+Copy the tomcat-redis-session-manager.jar and jedis-2.0.0.jar files into the lib directory of your Tomcat installation.
+
+Reboot the server, and sessions should now be stored in Redis.
+
+
+https://github.com/jcoleman/tomcat-redis-session-manager/tree/tomcat-7
