@@ -24,7 +24,7 @@
 		<module>vanstone-framework</module>
 		<module>vanstone-webframework</module>
 		<module>vanstone-crawler4j</module>
-		<!-- <module>vanstone-sms-ensms1069009130</module> -->
+		<module>vanstone-sms-ensms1069009130</module>
 		<module>vanstone-mongo</module>
 		<module>vanstone-quartz</module>
 		<module>vanstone-gm</module>
