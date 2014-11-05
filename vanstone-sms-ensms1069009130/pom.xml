@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.vanstone</groupId>
 		<artifactId>commons</artifactId>
-		<version>1.2.8</version>
+		<version>1.2.9</version>
 	</parent>
 
 	<artifactId>vanstone-sms-ensms1069009130</artifactId>
