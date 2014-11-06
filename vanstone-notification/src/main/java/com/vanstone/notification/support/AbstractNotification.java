@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.vanstone.notification.Notification;
+import com.vanstone.notification.NotificationException;
 
 /**
  * 抽象Notification
@@ -50,7 +51,7 @@ public abstract class AbstractNotification implements Notification {
 	 * @see com.vanstone.notification.Notification#send()
 	 */
 	@Override
-	public boolean send() {
+	public boolean send() throws NotificationException {
 		boolean isok = this.sendInternal();
 		this.completeTime = new Date();
 		return isok;
@@ -58,9 +59,10 @@ public abstract class AbstractNotification implements Notification {
 	
 	/**
 	 * 内部发送实现
+	 * @throws NotificationException
 	 * @return
 	 */
-	protected abstract boolean sendInternal();
+	protected abstract boolean sendInternal() throws NotificationException;
 	
 	@Override
 	public String toString() {

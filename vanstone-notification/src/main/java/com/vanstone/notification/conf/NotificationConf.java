@@ -4,6 +4,7 @@
 package com.vanstone.notification.conf;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import com.vanstone.notification.Environment;
@@ -44,6 +45,13 @@ public class NotificationConf {
 	
 	/**IOS默认徽章*/
 	public static final int IOS_DEFAULT_BADGE = 100;
+	
+	/***/
+	public static final int IOS_MAX_CONTENT_BYTE_SIZE = 256;
+	
+	public static final String SYS_CHARSET_STRING = "UTF-8";
+	
+	public static final Charset SYS_CHARSET = Charset.forName(SYS_CHARSET_STRING);
 	
 	private NotificationConf(){}
 	

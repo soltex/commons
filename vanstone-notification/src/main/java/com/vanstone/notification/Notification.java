@@ -26,6 +26,6 @@ public interface Notification {
 	 * 发送通知
 	 * @return
 	 */
-	boolean send();
+	boolean send() throws NotificationException;
 	
 }

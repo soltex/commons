@@ -17,6 +17,8 @@ import javapns.notification.PushedNotification;
 
 import org.json.JSONException;
 
+import com.vanstone.notification.NotificationException;
+import com.vanstone.notification.NotificationException.ErrorCode;
 import com.vanstone.notification.conf.NotificationConf;
 import com.vanstone.notification.support.AbstractNotification;
 
@@ -73,7 +75,12 @@ public class Notification4IOS extends AbstractNotification {
 	 * @see com.vanstone.notification.support.AbstractNotification#sendInternal()
 	 */
 	@Override
-	protected boolean sendInternal() {
+	protected boolean sendInternal() throws NotificationException {
+		byte[] contentBytes = this.getContent().getBytes(NotificationConf.SYS_CHARSET);
+		if (contentBytes.length > NotificationConf.IOS_MAX_CONTENT_BYTE_SIZE) {
+			throw NotificationException.create(ErrorCode.Content_Char_Max_Size);
+		}
+		
 		PushNotificationPayload payload = new PushNotificationPayload();
 		try {
 			
