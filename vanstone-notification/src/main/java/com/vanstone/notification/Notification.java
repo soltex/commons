@@ -26,6 +26,12 @@ public interface Notification {
 	 * 发送通知
 	 * @return
 	 */
-	boolean send() throws NotificationException;
+	SendState send() throws NotificationException;
+	
+	/**
+	 * 是否为群发消息
+	 * @return
+	 */
+	boolean isMassNotification();
 	
 }
