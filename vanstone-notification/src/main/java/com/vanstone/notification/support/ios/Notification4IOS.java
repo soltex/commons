@@ -3,7 +3,10 @@
  */
 package com.vanstone.notification.support.ios;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javapns.communication.exceptions.CommunicationException;
@@ -14,9 +17,13 @@ import javapns.notification.AppleNotificationServerBasicImpl;
 import javapns.notification.PushNotificationManager;
 import javapns.notification.PushNotificationPayload;
 import javapns.notification.PushedNotification;
+import javapns.notification.PushedNotifications;
 
 import org.json.JSONException;
 
+import com.vanstone.notification.NotificationException;
+import com.vanstone.notification.NotificationException.ErrorCode;
+import com.vanstone.notification.SendState;
 import com.vanstone.notification.conf.NotificationConf;
 import com.vanstone.notification.support.AbstractNotification;
 
@@ -30,29 +37,26 @@ public class Notification4IOS extends AbstractNotification {
 	private String sound = NotificationConf.IOS_DEFAULT_SOUND;
 	/**徽章*/
 	private int badge = NotificationConf.IOS_DEFAULT_BADGE;
-	/**设备Token*/
-	private String token;
 	/**自定义参数*/
 	private Map<String, Object> params = new LinkedHashMap<String, Object>();
 	
-	/**
-	 * 默认构造Notification4IOS
-	 * @param token
-	 * @param content
-	 */
 	public Notification4IOS(String token, String content) {
-		super(content);
-		this.token = token;
+		super(token, content);
 	}
 	
-	public String getToken() {
-		return token;
+	/**
+	 * 多Token
+	 * @param tokens
+	 * @param content
+	 */
+	public Notification4IOS(Collection<String> tokens, String content) {
+		super(tokens, content);
 	}
-
+	
 	public String getSound() {
 		return sound;
 	}
-
+	
 	public void setSound(String sound) {
 		this.sound = sound;
 	}
@@ -65,52 +69,71 @@ public class Notification4IOS extends AbstractNotification {
 		this.badge = badge;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
-	}
-
 	/* (non-Javadoc)
 	 * @see com.vanstone.notification.support.AbstractNotification#sendInternal()
 	 */
 	@Override
-	protected boolean sendInternal() {
+	protected SendState sendInternal() throws NotificationException {
+		byte[] contentBytes = this.getContent().getBytes(NotificationConf.SYS_CHARSET);
+		if (contentBytes.length > NotificationConf.IOS_MAX_CONTENT_BYTE_SIZE) {
+			throw NotificationException.create(ErrorCode.Content_Char_Max_Size);
+		}
+		
 		PushNotificationPayload payload = new PushNotificationPayload();
 		try {
-			
 			//通知定义
 			payload.addAlert(this.getContent());
 			payload.addBadge(badge);
 			payload.addSound(sound);
 //			payload.addCustomAlertBody("<a href='消息体'>呵呵呵</a>");
-//			payload.addCustomDictionary("username", "shipeng");
-//			payload.addCustomDictionary("password", "shipengpassword");
 			if (this.containParams()) {
 				for (Map.Entry<String, Object> param : params.entrySet()) {
 					payload.addCustomDictionary(param.getKey(), param.getValue());
 				}
 			}
-			//设备定义
-			Device device = new BasicDevice();
-			device.setToken(token);
-			
-			//管理器定义以及消息发送
 			PushNotificationManager pushNotificationManager = new PushNotificationManager();
 			pushNotificationManager.initializeConnection(new AppleNotificationServerBasicImpl(NotificationConf.getInstance().getCertification(), NotificationConf.getInstance().getCertificationPassword(), NotificationConf.getInstance().getEnvironment().getBooleanValueOfEnvironment()));
-			PushedNotification pushedNotification = pushNotificationManager.sendNotification(device, payload);
-			if (pushedNotification.isSuccessful()) {
-				return true;
+			if (!this.isMassNotification()) {
+				//单体发送
+				//设备定义
+				Device device = new BasicDevice();
+				device.setToken(this.getToken());
+				//管理器定义以及消息发送
+				PushedNotification pushedNotification = pushNotificationManager.sendNotification(device, payload);
+				if (pushedNotification.isSuccessful()) {
+					return SendState.createSingleNotificationState(true);
+				}
+				LOG.error("IOS Send Msg Error, Reason : {}", pushedNotification.getResponse().getMessage());
+				return SendState.createSingleNotificationState(false);
+			}else{
+				//群发
+				List<Device> devices = new ArrayList<Device>();
+				for (String tempToken: this.getTokens()) {
+					Device device = new BasicDevice();
+					device.setToken(tempToken);
+					devices.add(device);
+				}
+				PushedNotifications pushedNotifications = pushNotificationManager.sendNotifications(payload, devices);
+				PushedNotifications failPushedNotifications = pushedNotifications.getFailedNotifications();
+				PushedNotifications successPushedNotifications = pushedNotifications.getSuccessfulNotifications();
+				SendState sendState = new SendState();
+				if (failPushedNotifications != null && failPushedNotifications.size() >0) {
+					sendState.incFailNum(failPushedNotifications.size());
+				}
+				if (successPushedNotifications != null && successPushedNotifications.size() >0) {
+					sendState.incSuccessNum(successPushedNotifications.size());
+				}
+				return sendState;
 			}
-			LOG.error("IOS Send Msg Error, Reason : {}", pushedNotification.getResponse().getMessage());
-			return false;
 		} catch (JSONException e) {
 			e.printStackTrace();
-			return false;
+			return SendState.createSingleNotificationState(false);
 		} catch (CommunicationException e) {
 			e.printStackTrace();
-			return false;
+			return SendState.createSingleNotificationState(false);
 		} catch (KeystoreException e) {
 			e.printStackTrace();
-			return false;
+			return SendState.createSingleNotificationState(false);
 		}
 	}
 	

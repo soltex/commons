@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.vanstone</groupId>
 	<artifactId>commons</artifactId>
-	<version>1.2.9</version>
+	<version>1.2.10</version>
 	<packaging>pom</packaging>
 
 	<name>commons</name>
@@ -25,7 +24,6 @@
 		<module>vanstone-framework</module>
 		<module>vanstone-webframework</module>
 		<module>vanstone-crawler4j</module>
-		<module>vanstone-sms-ensms1069009130</module>
 		<module>vanstone-mongo</module>
 		<module>vanstone-quartz</module>
 		<module>vanstone-gm</module>
@@ -33,7 +31,8 @@
 		<module>vanstone-notification</module>
 		<module>tomcat7-redis-session-manager</module>
 		<module>vanstone-zk</module>
-	</modules>
+    	<module>vanstone-sms</module>
+  </modules>
 
 	<distributionManagement>
 		<repository>
@@ -44,7 +43,7 @@
 	</distributionManagement>
 
 	<properties>
-		<vanstone.commons.version>1.2.9</vanstone.commons.version>
+		<vanstone.commons.version>1.2.10</vanstone.commons.version>
 	</properties>
 
 	<dependencies>

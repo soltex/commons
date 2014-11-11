@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.vanstone</groupId>
 		<artifactId>commons</artifactId>
-		<version>1.2.9</version>
+		<version>1.2.10</version>
 	</parent>
 
 	<artifactId>vanstone-taglib</artifactId>
