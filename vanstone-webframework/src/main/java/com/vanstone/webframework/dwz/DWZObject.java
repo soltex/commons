@@ -58,12 +58,38 @@ public class DWZObject {
 		return object;
 	}
 	
+	/**
+	 * 创建成功对象
+	 * @param message
+	 * @return
+	 */
 	public static DWZObject createSuccessObject(String message) {
 		return create(StatusCode.Success, message);
 	}
 	
+	/**
+	 * 创建成功对象
+	 * @return
+	 */
 	public static DWZObject createSuccessObject() {
 		return create(StatusCode.Success);
+	}
+	
+	/**
+	 * 创建错误对象
+	 * @param message
+	 * @return
+	 */
+	public static DWZObject createErrorObject(String message) {
+		return create(StatusCode.Error, message);
+	}
+	
+	/**
+	 * 创建错误对象
+	 * @return
+	 */
+	public static DWZObject createErrorObject() {
+		return create(StatusCode.Error);
 	}
 	
 	public String getMessage() {
