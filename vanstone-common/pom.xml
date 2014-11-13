@@ -28,6 +28,7 @@
 		<junit.version>4.6</junit.version>
 		<mybatis.spring.version>1.2.1</mybatis.spring.version>
 		<mybatis.version>3.2.3</mybatis.version>
+		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
 	</properties>
 
 	<dependencies>
@@ -103,6 +104,11 @@
 			<groupId>org.apache.ant</groupId>
 			<artifactId>ant</artifactId>
 			<version>1.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
