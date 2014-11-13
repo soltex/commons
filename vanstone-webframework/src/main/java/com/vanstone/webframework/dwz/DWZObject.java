@@ -33,6 +33,8 @@ public class DWZObject {
 	/** DWZ参数信息*/
 	private Map<String, Object> params = new LinkedHashMap<String, Object>();
 	
+	private String redirectUrl;
+	
 	protected DWZObject(String  statusCode) {
 		this.statusCode = statusCode;
 	}
@@ -82,6 +84,17 @@ public class DWZObject {
 	 */
 	public static DWZObject createErrorObject(String message) {
 		return create(StatusCode.Error, message);
+	}
+	
+	/**
+	 * 创建redirect object
+	 * @param redirectUrl
+	 * @return
+	 */
+	public static DWZObject createRedirectObject(String redirectUrl) {
+		DWZObject object = create(StatusCode.Redirect);
+		object.setRedirectUrl(redirectUrl);
+		return object;
 	}
 	
 	/**
@@ -165,12 +178,27 @@ public class DWZObject {
 		this.dialog = dialog;
 	}
 	
+	public String getRedirectUrl() {
+		return redirectUrl;
+	}
 	
+	public void setRedirectUrl(String redirectUrl) {
+		this.redirectUrl = redirectUrl;
+	}
 	
-	
-	
+	/**
+	 * 生成Json字符串 
+	 * @return
+	 */
+	public String toJsonString() {
+		Gson gson = GsonCreator.create();
+		return gson.toJson(this);
+	}
+
+
+
 	public static enum StatusCode implements BaseEnum<String> {
-		Success("操作成功", "200"), Error("操作失败", "300"), Timeout("操作超时", "301");
+		Success("操作成功", "200"), Error("操作失败", "300"), Timeout("操作超时", "301"), Redirect("重定向","302");
 		;
 
 		private String desc;

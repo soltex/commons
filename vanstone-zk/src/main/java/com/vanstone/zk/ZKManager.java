@@ -37,7 +37,10 @@ public class ZKManager {
 		//创建CuratorFramework
 		this.curatorFramework = createCuratorFramework();
 		//启动CuratorFramework
-		this.curatorFramework.start();
+		if (!this.curatorFramework.getState().equals(CuratorFrameworkState.STARTED)) {
+			this.curatorFramework.start();
+			LOG.info("Curator Framework Client Started. ");
+		}
 	}
 	
 	/**
@@ -134,6 +137,25 @@ public class ZKManager {
 			e.printStackTrace();
 			throw new ZKError(e);
 		}
+	}
+	
+	/**
+	 * 节点是否存在
+	 * @param node
+	 * @return
+	 */
+	public boolean existsNode(String node) {
+		this.validateNode(node);
+		try {
+			Stat nodeStat = this.curatorFramework.checkExists().forPath(node);
+			if (nodeStat == null) {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	/**
