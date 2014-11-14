@@ -86,6 +86,8 @@ public final class ContentType {
 		CONTENT_TYPE_REPO.put( "xhtml","application/xhtml+xml");
 		CONTENT_TYPE_REPO.put( "xht","application/xhtml+xml");
 		CONTENT_TYPE_REPO.put( "zip","application/zip");
+		CONTENT_TYPE_REPO.put( "war","application/zip");
+		CONTENT_TYPE_REPO.put( "jar","application/zip");
 		CONTENT_TYPE_REPO.put( "au","audio/basic");
 		CONTENT_TYPE_REPO.put( "snd","audio/basic");
 		CONTENT_TYPE_REPO.put( "mid","audio/midi");

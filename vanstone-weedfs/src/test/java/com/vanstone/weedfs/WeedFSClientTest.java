@@ -31,6 +31,14 @@ public class WeedFSClientTest {
 	}
 	
 	@Test
+	public void testUploadFile() {
+		String path = "/var/hudson-3.0.1.war";
+		WeedFSClient weedFSClient = new WeedFSClient();
+		RequestResult requestResult = weedFSClient.upload(new File(path));
+		System.out.println(requestResult);
+	}
+	
+	@Test
 	public void testDeleteFSFile() {
 		String fileid = "7,0e8ce54c44065c";
 		WeedFSClient weedFSClient = new WeedFSClient();
