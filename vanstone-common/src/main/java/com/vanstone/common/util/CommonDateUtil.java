@@ -20,16 +20,24 @@ import com.vanstone.common.MyAssert;
  */
 public class CommonDateUtil {
 
-	public static final String PATTERN_STANDARD = "yyyy-MM-dd HH:mm:ss";
+	/**日期时间格式*/
+	public static final String Y_M_D_H_M_S = "yyyy-MM-dd HH:mm:ss";
 
-	public static final String PATTERN_DATE = "yyyy-MM-dd";
+	/**日期格式*/
+	public static final String Y_M_D = "yyyy-MM-dd";
 
+	/**时间格式*/
+	public static final String H_M_S = "HH:mm:ss";
+	
+	/**日期时间（无秒）*/
+	public static final String Y_M_D_H_M = "yyyy-MM-dd HH:mm";
+	
 	public static String timestamp2String(Timestamp timestamp, String pattern) {
 		if (timestamp == null) {
 			throw new java.lang.IllegalArgumentException("timestamp null illegal");
 		}
 		if (pattern == null || pattern.equals("")) {
-			pattern = PATTERN_STANDARD;
+			pattern = Y_M_D_H_M_S;
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.format(new Date(timestamp.getTime()));
@@ -46,7 +54,7 @@ public class CommonDateUtil {
 			return null;
 		}
 		if (pattern == null || pattern.equals("")) {
-			pattern = PATTERN_STANDARD;
+			pattern = Y_M_D_H_M_S;
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.format(date);
@@ -65,9 +73,9 @@ public class CommonDateUtil {
 			throw new java.lang.IllegalArgumentException("Date Time Null Illegal");
 		}
 		if (pattern == null || pattern.equals("")) {
-			pattern = PATTERN_STANDARD;
+			pattern = Y_M_D_H_M_S;
 		}
-
+		
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		Date date = null;
 		try {
@@ -79,15 +87,11 @@ public class CommonDateUtil {
 	}
 
 	public static Date string2Date(String strDate, String pattern) {
-		if (strDate == null || strDate.equals("")) {
-			return null;
-		}
-		if (pattern == null || pattern.equals("")) {
-			pattern = CommonDateUtil.PATTERN_DATE;
-		}
+		MyAssert.hasText(strDate);
+		MyAssert.hasText(pattern);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		Date date = null;
-
 		try {
 			date = sdf.parse(strDate);
 		} catch (ParseException e) {
@@ -95,13 +99,13 @@ public class CommonDateUtil {
 		}
 		return date;
 	}
-
+	
 	public static String stringToYear(String strDest) {
 		if (strDest == null || strDest.equals("")) {
 			throw new java.lang.IllegalArgumentException("str dest null");
 		}
 
-		Date date = string2Date(strDest, CommonDateUtil.PATTERN_DATE);
+		Date date = string2Date(strDest, CommonDateUtil.Y_M_D);
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		return String.valueOf(c.get(Calendar.YEAR));
@@ -112,7 +116,7 @@ public class CommonDateUtil {
 			throw new java.lang.IllegalArgumentException("str dest null");
 		}
 
-		Date date = string2Date(strDest, CommonDateUtil.PATTERN_DATE);
+		Date date = string2Date(strDest, CommonDateUtil.Y_M_D);
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		// return String.valueOf(c.get(Calendar.MONTH));
@@ -129,7 +133,7 @@ public class CommonDateUtil {
 			throw new java.lang.IllegalArgumentException("str dest null");
 		}
 
-		Date date = string2Date(strDest, CommonDateUtil.PATTERN_DATE);
+		Date date = string2Date(strDest, CommonDateUtil.Y_M_D);
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		// return String.valueOf(c.get(Calendar.DAY_OF_MONTH));
