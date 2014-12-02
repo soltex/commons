@@ -7,14 +7,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.vanstone.business.lang.BaseEnum;
 import com.vanstone.business.serialize.GsonCreator;
 
 /**
  * @author shipeng
  *
  */
-public class DWZObject {
+public class ViewCommandObject {
+	
 	
 	/** 操作标志位*/
 	private String statusCode;
@@ -35,74 +35,8 @@ public class DWZObject {
 	
 	private String redirectUrl;
 	
-	protected DWZObject(String  statusCode) {
+	protected ViewCommandObject(String  statusCode) {
 		this.statusCode = statusCode;
-	}
-	
-	/**
-	 * 创建对象
-	 * @param dwzStatusCode
-	 * @return
-	 */
-	public static DWZObject create(StatusCode statusCode) {
-		return new DWZObject(statusCode.getCode());
-	}
-	
-	/**
-	 * 创建对象
-	 * @param dwzStatusCode
-	 * @param message
-	 * @return
-	 */
-	public static DWZObject create(StatusCode statusCode, String message) {
-		DWZObject object = new DWZObject(statusCode.getCode());
-		object.setMessage(message);
-		return object;
-	}
-	
-	/**
-	 * 创建成功对象
-	 * @param message
-	 * @return
-	 */
-	public static DWZObject createSuccessObject(String message) {
-		return create(StatusCode.Success, message);
-	}
-	
-	/**
-	 * 创建成功对象
-	 * @return
-	 */
-	public static DWZObject createSuccessObject() {
-		return create(StatusCode.Success);
-	}
-	
-	/**
-	 * 创建错误对象
-	 * @param message
-	 * @return
-	 */
-	public static DWZObject createErrorObject(String message) {
-		return create(StatusCode.Error, message);
-	}
-	
-	/**
-	 * 创建redirect object
-	 * @param redirectUrl
-	 * @return
-	 */
-	public static DWZObject createRedirectObject(String redirectUrl) {
-		DWZObject object = create(StatusCode.Redirect);
-		object.setRedirectUrl(redirectUrl);
-		return object;
-	}
-	
-	/**
-	 * 创建错误对象
-	 * @return
-	 */
-	public static DWZObject createErrorObject() {
-		return create(StatusCode.Error);
 	}
 	
 	public String getMessage() {
@@ -165,11 +99,6 @@ public class DWZObject {
 		this.params.clear();
 	}
 	
-	public static DWZObject parse(String json) {
-		Gson gson = GsonCreator.create();
-		return gson.fromJson(json, DWZObject.class);
-	}
-	
 	public boolean isDialog() {
 		return dialog;
 	}
@@ -194,31 +123,5 @@ public class DWZObject {
 		Gson gson = GsonCreator.create();
 		return gson.toJson(this);
 	}
-
-
-
-	public static enum StatusCode implements BaseEnum<String> {
-		Success("操作成功", "200"), Error("操作失败", "300"), Timeout("操作超时", "301"), Redirect("重定向","302");
-		;
-
-		private String desc;
-		private String code;
-
-		private StatusCode(String desc, String code) {
-			this.desc = desc;
-			this.code = code;
-		}
-		
-		@Override
-		public String getCode() {
-			return this.code;
-		}
-
-		@Override
-		public String getDesc() {
-			return this.desc;
-		}
-	}
-	
 	
 }
