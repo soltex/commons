@@ -19,7 +19,7 @@ public abstract class GsonCreator {
 	 * @return
 	 */
 	public static Gson create() {
-		Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateSerializer()).create();
+		Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateSerializer()).disableHtmlEscaping().create();
 		return gson;
 	}
 	
@@ -28,7 +28,7 @@ public abstract class GsonCreator {
 	 * @return
 	 */
 	public static Gson createPretty() {
-		Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Date.class, new DateSerializer()).create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Date.class, new DateSerializer()).disableHtmlEscaping().create();
 		return gson;
 	}
 	
@@ -37,7 +37,7 @@ public abstract class GsonCreator {
 	 * @return
 	 */
 	public static Gson createDateStringGson() {
-		Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateStringSerializer()).create();
+		Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateStringSerializer()).disableHtmlEscaping().create();
 		return gson;
 	}
 	
