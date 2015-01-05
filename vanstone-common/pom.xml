@@ -182,43 +182,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			
-			
-			
-			
-			<plugin>
-                <groupId>com.github.wvengen</groupId>
-                <artifactId>proguard-maven-plugin</artifactId>
-                <version>2.0.8</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>proguard</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <attach>true</attach>
-                    <attachArtifactClassifier>pg</attachArtifactClassifier>
-                    <!-- attach 的作用是在 install 与 deploy 时将生成的 pg 文件也安装与部署 -->
-                    <options> <!-- 详细配置方式参考 ProGuard 官方文档 -->
-                        <!-- <option>-dontobfuscate</option> -->
-                        <option>-ignorewarnings</option> <!--忽略所有告警-->
-                        <option>-dontshrink</option>   <!--不做 shrink -->
-                        <option>-dontoptimize</option> <!--不做 optimize -->
-                        <!-- <option>-dontskipnonpubliclibraryclasses</option> -->
-                        <!-- <option>-dontskipnonpubliclibraryclassmembers</option> -->
-                        <option>-keep class com.vanstone.common.** { *; }</option>
-                        <!-- 保持对外的接口性质类对外的类名与方法名不变 -->
-                    </options>
-                    <outjar>${project.build.finalName}-pg</outjar>
-                    <libs>
-                        <lib>${java.home}/lib/rt.jar</lib>
-                    </libs>
-                </configuration>
-            </plugin>
 		</plugins>
 	</build>
 </project>
