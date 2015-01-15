@@ -1,19 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
-		<groupId>com.vanstone</groupId>
 		<artifactId>commons</artifactId>
-		<version>1.2.11</version>
+		<groupId>com.vanstone</groupId>
+		<version>1.2.10</version>
 	</parent>
-
-	<artifactId>vanstone-redis</artifactId>
-	<packaging>jar</packaging>
-
-	<name>vanstone-redis</name>
+	<artifactId>vanstone-sms</artifactId>
+	<name>vanstone-sms</name>
 	<url>http://maven.apache.org</url>
-
 	<distributionManagement>
 		<repository>
 			<id>sagacityidea-release</id>
@@ -34,14 +31,24 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.1.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vanstone</groupId>
+			<artifactId>vanstone-common</artifactId>
+			<version>${vanstone.commons.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.now</groupId>
+			<artifactId>smsapi</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>b10</version>
 		</dependency>
 	</dependencies>
 	<build>
