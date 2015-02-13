@@ -89,7 +89,7 @@ public abstract class AbstractNotification implements Notification {
 	
 	@Override
 	public boolean isMassNotification() {
-		if (this.getToken() == null || this.getToken().equals("")) {
+		if (this.getToken() != null && !this.getToken().equals("")) {
 			return false;
 		}
 		return true;
