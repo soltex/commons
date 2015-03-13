@@ -12,7 +12,7 @@ import java.util.concurrent.Callable;
 public interface TaskManager {
 	
 	/**当前默认线程池数量*/
-	public static final int DEFAULT_SYS_TASK_THREAD_NUM = 50;
+	public static final int DEFAULT_SYS_TASK_THREAD_NUM = 500;
 	
 	/**
 	 * 系统执行任务
