@@ -217,4 +217,18 @@ public final class ContentType {
 		return parseContentType(extName);
 	}
 	
+	/**
+	 * 是否包含扩展名
+	 * @param extName
+	 * @return
+	 */
+	public static boolean containExtName(String extName) {
+		if (extName == null || extName.equals("")) {
+			return false;
+		}
+		if (CONTENT_TYPE_REPO.containsKey(extName.toLowerCase())) {
+			return true;
+		}
+		return false;
+	}
 }

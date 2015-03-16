@@ -14,15 +14,11 @@ import org.apache.commons.io.FilenameUtils;
 import com.vanstone.common.MyAssert;
 
 /**
- * 组合方式说明 
- * 例如 ： /data/vanstone-fsfile/common/12/12/12/name.jpg
- * fileid : /12/12/12/name.jpg
- * path : /12/12/12
- * extname : jpg
- * filename : name.jpg
- * basefilename : name 
- * physicalpath : /data/vanstone-fsfile/common/12/12/12/name.jpg
- * fileaction : http://localhost:8080/image/12/12/12/name.jpg
+ * 组合方式说明 例如 ： /data/vanstone-fsfile/common/12/12/12/name.jpg fileid :
+ * /12/12/12/name.jpg path : /12/12/12 extname : jpg filename : name.jpg
+ * basefilename : name physicalpath :
+ * /data/vanstone-fsfile/common/12/12/12/name.jpg fileaction :
+ * http://localhost:8080/image/12/12/12/name.jpg
  */
 public class FSFile implements Serializable {
 
@@ -32,7 +28,7 @@ public class FSFile implements Serializable {
 	 */
 	protected String fileid;
 	/**
-	 * 文件名称 
+	 * 文件名称
 	 */
 	protected String filename;
 	/**
@@ -63,11 +59,11 @@ public class FSFile implements Serializable {
 	 * 物理路径
 	 */
 	protected String phycicalpath;
-	
-	protected FSFile(String fileid,FSType fsType) {
+
+	protected FSFile(String fileid, FSType fsType) {
 		MyAssert.hasText(fileid);
 		MyAssert.notNull(fsType);
-		
+
 		this.fileid = fileid;
 		this.fsType = fsType;
 		this.filename = FilenameUtils.getName(this.fileid);
@@ -75,19 +71,23 @@ public class FSFile implements Serializable {
 		this.extname = FilenameUtils.getExtension(this.fileid);
 		this.fileidpath = FilenameUtils.getFullPath(fileid);
 		this.fileType = FileType.getFileType(this.extname);
-		
+
 		if (this.fsType.equals(FSType.CommonType)) {
-			this.physicalFilepath = Setting.getInstance().getStore() + this.fileid;
-		}else if (this.fsType.equals(FSType.Temporary)){
-			this.physicalFilepath = Setting.getInstance().getTmpStore() + this.fileid;
-		}else if (this.fsType.equals(FSType.Constants)) {
-			this.physicalFilepath = Setting.getInstance().getConstantStore() + this.fileid;
-		}else{
-			throw new IllegalArgumentException("Illegal FSType : " + this.fsType);
+			this.physicalFilepath = Setting.getInstance().getStore()
+					+ this.fileid;
+		} else if (this.fsType.equals(FSType.Temporary)) {
+			this.physicalFilepath = Setting.getInstance().getTmpStore()
+					+ this.fileid;
+		} else if (this.fsType.equals(FSType.Constants)) {
+			this.physicalFilepath = Setting.getInstance().getConstantStore()
+					+ this.fileid;
+		} else {
+			throw new IllegalArgumentException("Illegal FSType : "
+					+ this.fsType);
 		}
 		this.phycicalpath = FilenameUtils.getFullPath(this.physicalFilepath);
 	}
-	
+
 	public String getFileid() {
 		return fileid;
 	}
@@ -95,7 +95,7 @@ public class FSFile implements Serializable {
 	public String getFilename() {
 		return filename;
 	}
-	
+
 	public String getExtensionName() {
 		return this.extname;
 	}
@@ -107,19 +107,19 @@ public class FSFile implements Serializable {
 	public File getFile() {
 		return new File(this.getPhysicalFilepath());
 	}
-	
+
 	public String getFullUrlPath() {
 		return Setting.getInstance().getUriPrefix() + this.fileid;
 	}
-	
+
 	public String getImageActionFullUrl() {
 		return Setting.getInstance().getFileAction() + fileid;
 	}
-	
+
 	public boolean exists() {
 		return getFile().exists();
 	}
-	
+
 	public String getPhysicalFilepath() {
 		return this.physicalFilepath;
 	}
@@ -131,15 +131,15 @@ public class FSFile implements Serializable {
 	public FileInputStream getInputStream() throws FileNotFoundException {
 		return new FileInputStream(getFile());
 	}
-	
+
 	public FileOutputStream getOutputStream() throws FileNotFoundException {
 		return new FileOutputStream(getFile());
 	}
-	
+
 	public FSType getFSType() {
 		return fsType;
 	}
-	
+
 	public String getFileAction() {
 		return Setting.getInstance().getFileAction() + fileid;
 	}
@@ -148,4 +148,13 @@ public class FSFile implements Serializable {
 		return fileidpath;
 	}
 	
+	/**
+	 * 是否为图片
+	 * 
+	 * @return
+	 */
+	public boolean isImage() {
+		return FileType.isImage(this.getExtensionName());
+	}
+
 }
