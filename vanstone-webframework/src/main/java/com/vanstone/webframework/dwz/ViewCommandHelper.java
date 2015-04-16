@@ -90,6 +90,26 @@ public class ViewCommandHelper {
 	}
 	
 	/**
+	 * 创建对象
+	 * @param statusCode
+	 * @param closeDialog
+	 * @param dialog
+	 * @return
+	 */
+	public static DialogViewCommandObject createDialog(StatusCode statusCode, boolean closeDialog, boolean dialog) {
+		return new DialogViewCommandObject(statusCode.getCode(), closeDialog, dialog);
+	}
+	
+	/**
+	 * @param closeDialog
+	 * @param dialog
+	 * @return
+	 */
+	public static DialogViewCommandObject createSuccessObject(boolean closeDialog, boolean dialog) {
+		return new DialogViewCommandObject(StatusCode.Success.getCode(), closeDialog, dialog);
+	}
+	
+	/**
 	 * 创建成功对话框对象
 	 * @param closeDialog
 	 * @return
@@ -107,8 +127,19 @@ public class ViewCommandHelper {
 		return new DialogViewCommandObject(StatusCode.Error.getCode(), closeDialog);
 	}
 	
+	/**
+	 * 创建错误对话框
+	 * @param closeDialog
+	 * @param dialog
+	 * @return
+	 */
+	public static DialogViewCommandObject createErrorDialog(boolean closeDialog, boolean dialog) {
+		return new DialogViewCommandObject(StatusCode.Error.getCode(), closeDialog, dialog);
+	}
+	
 	public static ViewCommandObject parse(String json) {
 		Gson gson = GsonCreator.create();
 		return gson.fromJson(json, ViewCommandObject.class);
 	}
+	
 }

@@ -18,6 +18,12 @@ public class DialogViewCommandObject extends ViewCommandObject {
 		this.setDialog(true);
 	}
 	
+	protected DialogViewCommandObject(String statusCode, boolean closedialog, boolean dialog) {
+		super(statusCode);
+		this.closeDialog = closedialog;
+		this.setDialog(dialog);
+	}
+	
 	/**
 	 * 是否关闭对话框
 	 * 
