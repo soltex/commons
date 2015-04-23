@@ -105,26 +105,8 @@ public class ViewCommandHelper {
 	 * @param dialog
 	 * @return
 	 */
-	public static DialogViewCommandObject createSuccessObject(boolean closeDialog, boolean dialog) {
+	public static DialogViewCommandObject createSuccessDialog(boolean closeDialog, boolean dialog) {
 		return new DialogViewCommandObject(StatusCode.Success.getCode(), closeDialog, dialog);
-	}
-	
-	/**
-	 * 创建成功对话框对象
-	 * @param closeDialog
-	 * @return
-	 */
-	public static DialogViewCommandObject createSuccessDialog(boolean closeDialog) {
-		return new DialogViewCommandObject(StatusCode.Success.getCode(), closeDialog);
-	}
-	
-	/**
-	 * 创建错误对话框
-	 * @param closeDialog
-	 * @return
-	 */
-	public static DialogViewCommandObject createErrorDialog(boolean closeDialog) {
-		return new DialogViewCommandObject(StatusCode.Error.getCode(), closeDialog);
 	}
 	
 	/**

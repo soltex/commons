@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>commons</artifactId>
 		<groupId>com.vanstone</groupId>
-		<version>1.2.11</version>
+		<version>1.2.12</version>
 	</parent>
 	<artifactId>vanstone-notification</artifactId>
 	<name>vanstone-notification</name>

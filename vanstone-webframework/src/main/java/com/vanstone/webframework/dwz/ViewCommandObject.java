@@ -28,7 +28,7 @@ public class ViewCommandObject {
 	private String forwardUrl;
 	/** 操作中间过程的确认信息*/
 	private String confirmMsg;
-	/** 是否为对话框*/
+	/** 是否装载对话框*/
 	private boolean dialog = false;
 	/** DWZ参数信息*/
 	private Map<String, Object> params = new LinkedHashMap<String, Object>();
