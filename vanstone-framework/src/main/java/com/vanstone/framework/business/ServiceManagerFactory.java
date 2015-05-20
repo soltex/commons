@@ -30,4 +30,10 @@ public final class ServiceManagerFactory {
 		Assert.hasText(serviceName);
 		return (T) SpringContextHolder.getBean(serviceName);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends Object> T getService(Class<?> clazz) {
+		Assert.notNull(clazz);
+		return (T)SpringContextHolder.getBean(clazz);
+	}
 }
