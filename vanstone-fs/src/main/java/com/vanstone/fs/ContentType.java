@@ -90,6 +90,7 @@ public final class ContentType {
 		CONTENT_TYPE_REPO.put( "jar","application/zip");
 		CONTENT_TYPE_REPO.put( "au","audio/basic");
 		CONTENT_TYPE_REPO.put( "snd","audio/basic");
+		CONTENT_TYPE_REPO.put( "ima4","audio/basic");
 		CONTENT_TYPE_REPO.put( "mid","audio/midi");
 		CONTENT_TYPE_REPO.put( "midi","audio/midi");
 		CONTENT_TYPE_REPO.put( "kar","audio/midi");
