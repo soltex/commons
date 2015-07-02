@@ -6,12 +6,17 @@ package com.vanstone.fs;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 
 import com.vanstone.common.MyAssert;
 import com.vanstone.fs.local.DirectoryCreator;
@@ -122,6 +127,19 @@ public class FSManager {
 		MyAssert.hasText(filenameWithoutExt);
 		MyAssert.hasText(extname);
 		return newAndCreateFSFile(filenameWithoutExt + "." + extname, fsType);
+	}
+	
+	public FSFile copy(File file, FSType fsType) {
+		MyAssert.notNull(file);
+		FSFile fsFile = newAndCreateFSFile(UUID.randomUUID().toString(), FilenameUtils.getExtension(file.getName()), fsType);
+		try {
+			IOUtils.copy(new FileInputStream(file), fsFile.getOutputStream());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return fsFile;
 	}
 	
 	/**

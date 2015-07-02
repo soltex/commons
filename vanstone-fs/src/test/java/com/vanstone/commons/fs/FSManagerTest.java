@@ -3,6 +3,8 @@
  */
 package com.vanstone.commons.fs;
 
+import java.io.File;
+
 import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 
@@ -58,5 +60,12 @@ public class FSManagerTest {
 	public void createTempFS() {
 		FSFile fsFile = FSManager.getInstance().newAndCreateFSFile("aa", "aaaaa", FSType.Temporary);
 		System.out.println(fsFile.getPhysicalFilepath());
+	}
+	
+	@Test
+	public void testCopy() {
+		File file = new File("E:/testimg/130628007-1 铂晶册 8X8 -7.jpg");
+		FSFile fsFile = FSManager.getInstance().copy(file, FSType.Temporary);
+		System.out.println(fsFile.getFileid());
 	}
 }
