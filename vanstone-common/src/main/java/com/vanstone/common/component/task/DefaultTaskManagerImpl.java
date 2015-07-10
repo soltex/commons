@@ -18,7 +18,6 @@ import com.vanstone.common.MyAssert;
  * 任务执行器
  * @author shipeng
  */
-@Deprecated
 class DefaultTaskManagerImpl implements TaskManager {
 	
 	private static Logger LOG = LoggerFactory.getLogger(DefaultTaskManagerImpl.class);

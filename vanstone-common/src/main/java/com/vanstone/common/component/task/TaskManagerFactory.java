@@ -7,7 +7,6 @@ package com.vanstone.common.component.task;
 /**
  * @author shipeng
  */
-@Deprecated
 public class TaskManagerFactory {
 	
 	private static class TaskManagerInstance {
