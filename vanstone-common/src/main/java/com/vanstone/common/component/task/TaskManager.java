@@ -9,6 +9,7 @@ import java.util.concurrent.Callable;
  * 系统任务管理器
  * @author shipeng
  */
+@Deprecated
 public interface TaskManager {
 	
 	/**当前默认线程池数量*/
