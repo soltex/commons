@@ -16,7 +16,7 @@ public class Notification4IOSTest {
 	
 	public static void main(String[] args) {
 		System.out.println(NotificationConf.getInstance().getEnvironment().getBooleanValueOfEnvironment());
-		Notification notification = new Notification4IOS("33a87ebff04afec4252dd6f3d6b45c82f27a3de3d0e6a2ec8d3fa61668569e50", "能么 ？ 收到了么 ？");
+		Notification notification = new Notification4IOS("020f0b69693873be21dd81b823b65cb5a0c17a16d30f6095c90c81c94d58ce8d", "能么 ？ 收到了么 ？");
 		//Notification notification = new Notification4IOS("12345", "呵呵呵呵，炎龙，看下。 你说呢，测试下看看");
 		try {
 			System.out.println(notification.send());
