@@ -210,7 +210,6 @@ public class CommonDateUtil {
 	public static Date getEndTimeOfDate(Date currentDate) {
 		MyAssert.notNull(currentDate);
 		String strDateTime = date2String(currentDate, "yyyy-MM-dd") + " 23:59:59";
-		System.out.println("getEndTimeOfDate ->" + strDateTime);
 		return string2Date(strDateTime, "yyyy-MM-dd HH:mm:ss");
 	}
 
