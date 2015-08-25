@@ -210,10 +210,9 @@ public class CommonDateUtil {
 	public static Date getEndTimeOfDate(Date currentDate) {
 		MyAssert.notNull(currentDate);
 		String strDateTime = date2String(currentDate, "yyyy-MM-dd") + " 23:59:59";
-		System.out.println("getEndTimeOfDate ->" + strDateTime);
 		return string2Date(strDateTime, "yyyy-MM-dd HH:mm:ss");
 	}
-
+	
 	public static void main(String[] args) {
 		// Date date = DateUtil.string2Date("2012-10-1 10:10:10",
 		// "yyyy-MM-dd HH:mm:ss");
