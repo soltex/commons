@@ -18,7 +18,7 @@ public class NotificationMainApp {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Notification notification = NotificationBuilder.createIOSNotification("65b1166d1702e9b8858b0068606690b82eee34e2be319977413c7721acaa74f8", "呵呵呵呵，孟**", null, null);
+		Notification notification = NotificationBuilder.createIOSNotification("890528a0b6148bf91ca4d6476f20708fab469e9d88788decfce11625d4522eeb", "呵呵呵呵，孟**", null, null);
 		SendState sendState;
 		try {
 			sendState = notification.send();
