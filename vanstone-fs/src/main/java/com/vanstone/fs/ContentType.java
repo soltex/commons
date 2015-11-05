@@ -154,6 +154,8 @@ public final class ContentType {
 		CONTENT_TYPE_REPO.put( "mpeg","video/mpeg");
 		CONTENT_TYPE_REPO.put( "mpg","video/mpeg");
 		CONTENT_TYPE_REPO.put( "mpe","video/mpeg");
+		CONTENT_TYPE_REPO.put( "mp4","video/mpeg");
+		CONTENT_TYPE_REPO.put( "flv","video/mpeg");
 		CONTENT_TYPE_REPO.put( "qt","video/quicktime");
 		CONTENT_TYPE_REPO.put( "mov","video/quicktime");
 		CONTENT_TYPE_REPO.put( "mxu","video/vnd.mpegurl");
